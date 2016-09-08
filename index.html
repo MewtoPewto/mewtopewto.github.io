@@ -42,9 +42,9 @@
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-md-4">
-          <h2>Games Coming Soon</h2>
-          <p>Be Ready!</p>
-          <p><a class="btn btn-default" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" role="button">View details &raquo;</a></p>
+          <h2>T-Chat</h2>
+          <p>Real-time chatting.</p>
+          <p><a class="btn btn-default" href="/t-chat"" role="button">View details &raquo;</a></p>
         </div>
         <div class="col-md-4">
           <h2>Games Coming Soon</h2>
@@ -64,6 +64,20 @@
         <p>Thanks For Visiting! Please Come Again!</p>
       </footer>
     </div> <!-- /container -->
+
+    <script src="/js/script.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/3.3.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAxhu8ifodJWRZkWcl0FK-uZBgUtylL1Po",
+        authDomain: "project-t-game.firebaseapp.com",
+        databaseURL: "https://project-t-game.firebaseio.com",
+        storageBucket: "project-t-game.appspot.com",
+      };
+      firebase.initializeApp(config);
+    </script>
 
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
