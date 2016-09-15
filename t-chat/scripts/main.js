@@ -43,12 +43,6 @@ function FriendlyChat() {
   this.messageInput.addEventListener('keyup', buttonTogglingHandler);
   this.messageInput.addEventListener('change', buttonTogglingHandler);
 
-  // Events for image upload.
-  this.submitImageButton.addEventListener('click', function() {
-    this.mediaCapture.click();
-  }.bind(this));
-  this.mediaCapture.addEventListener('change', this.saveImageMessage.bind(this));
-
   this.initFirebase();
 }
 
@@ -58,9 +52,9 @@ FriendlyChat.prototype.initFirebase = function() {
   this.auth = firebase.auth();
   this.database = firebase.database();
   this.storage = firebase.storage();
+
   // Initiates Firebase auth and listen to auth state changes.
   this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this));
-  // TODO(DEVELOPER): Initialize Firebase.
 };
 
 // Loads chat messages history and listens for upcoming ones.
@@ -71,11 +65,12 @@ FriendlyChat.prototype.loadMessages = function() {
   // Make sure we remove all previous listeners.
   this.messagesRef.off();
 
-  // Loads the last 12 messages and listen for new ones.
+  // Loads the messages and listen for new ones.
   var setMessage = function(data) {
    var val = data.val();
    this.displayMessage(data.key, val.name, val.text, val.photoUrl, val.imageUrl);
   }.bind(this);
+
   this.messagesRef.on('child_added', setMessage);
   this.messagesRef.on('child_changed', setMessage);
 };
@@ -149,7 +144,6 @@ FriendlyChat.prototype.signOut = function() {
 // Triggers when the auth state change for instance when the user signs-in or signs-out.
 FriendlyChat.prototype.onAuthStateChanged = function(user) {
   if (user) { // User is signed in!
-    console.log(user);
     // Get profile pic and user's name from the Firebase user object.
     var profilePicUrl = user.photoURL; // Only change these two lines!
     var userName = user.displayName;   // Only change these two lines!
